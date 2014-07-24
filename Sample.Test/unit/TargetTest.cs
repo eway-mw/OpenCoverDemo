@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace Sample.Test.unit
 {
@@ -12,6 +13,23 @@ namespace Sample.Test.unit
             var actual = Target.AddOne(1);
 
             Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void MethodWithBranchingTest_1()
+        {
+            const int expected = 1;
+            var actual = Target.MethodWithBranching(1);
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void MethodWithBranchingTest_Exception()
+        {
+            Assert.Throws(
+                typeof (ArgumentOutOfRangeException),
+                () => Target.MethodWithBranching(1000));
         }
     }
 }
